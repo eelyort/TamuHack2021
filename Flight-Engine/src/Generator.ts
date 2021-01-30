@@ -2,6 +2,7 @@ import seedrandom from 'seedrandom';
 import haversine from 'haversine-distance';
 import { DateTime } from 'luxon';
 import aircraft from './Data/aircraft';
+import gates from './Data/gates';
 
 const createRandomGenerator = (seed: string): (() => number) => {
   if (seed === undefined || seed === null) {
@@ -55,6 +56,9 @@ export default class Generator {
     // Assign random aircraft
     const randAircraft = aircraft[this.random(0, aircraft.length - 1)];
 
+    // Assign random gate
+    const randGate = gates[this.random(0, gates.length - 1)];
+
     // Determine flight duration based on distance and aircraft speed
     const duration: FlightDuration = {
       locale: '',
@@ -73,6 +77,7 @@ export default class Generator {
       destination,
       distance,
       duration,
+      gate: randGate,
       departureTime: departureTime.toISO(),
       arrivalTime: arrivalTime.toISO(),
       aircraft: randAircraft,

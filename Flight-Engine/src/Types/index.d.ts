@@ -37,6 +37,12 @@ declare interface Flight {
   duration: FlightDuration;
   departureTime: string;
   arrivalTime: string;
+  gate: Gate;
+}
+
+declare interface Gate {
+  location: Location;
+  code: string;
 }
 
 declare interface FlightQueryParams {
